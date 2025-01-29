@@ -48,6 +48,10 @@ npx shadcn@latest add button
 npx shadcn@latest add card
 npx shadcn@latest add toast
 npx shadcn@latest add input
+npx shadcn@latest add carousel
+npm i embla-carousel-autoplay
+npx shadcn@latest add table
+
 ```
 
 ## 01. create-next-app
@@ -56,12 +60,12 @@ npx shadcn@latest add input
 2. npx shadcn@latest init
 3. npm i react-icons
 
-## 02. create-website-layout
+## 02. create-posts
 
-4. npm i mongoose
-5. npm i zod
+1. npm i mongoose
+2. npm i zod
 
-## 02. login
+## 03. login
 
 ```
 npm i next-auth@beta bcryptjs react-hook-form @hookform/resolvers mongodb @auth/mongodb-adapter

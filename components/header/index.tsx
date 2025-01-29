@@ -1,5 +1,11 @@
-import React from 'react'
+import HeaderTop from './header-top';
+import Menu from './menu';
 
 export default function Header() {
-  return <div>index</div>
+  return (
+    <header className='border-b-2 border-black line'>
+      <HeaderTop />
+      <Menu />
+    </header>
+  );
 }
