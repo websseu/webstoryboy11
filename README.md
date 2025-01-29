@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Getting Started
 
-## Getting Started
+Hello
 
-First, run the development server:
+## vscode-extensions
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+1.  eslint
+2.  Prettier - Code formatter
+3.  Material Icon Theme
+4.  Tailwind CSS IntelliSense
+5.  es7+ react snippets
+6.  pretty typescript errors
+
+## setting json
+
+```js
+{
+  // UI
+  "workbench.iconTheme": "material-icon-theme",
+  "explorer.compactFolders": false,
+
+  // Editor
+  "editor.minimap.enabled": false,
+  "editor.fontSize": 13,
+  "editor.formatOnSave": true,
+
+  // Prettier
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "prettier.semi": false,
+  "prettier.singleQuote": true,
+  "prettier.jsxSingleQuote": true
+}
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## document
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. based on docs at https://nextjs.org/docs/app/getting-started/installation run
+2. based on docs at https://ui.shadcn.com/docs/installation/next run
+3. based on docs at https://react-icons.github.io/react-icons/ run
+4. based on docs at https://zod.dev/ run
+5. based on docs at https://mongoosejs.com/docs/guide.html/ run
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## shadcn
 
-## Learn More
+```
+npx shadcn@latest init
+npx shadcn@latest add button
+npx shadcn@latest add card
+npx shadcn@latest add toast
+npx shadcn@latest add input
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 01. create-next-app
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. npx create-next-app@latest ./
+2. npx shadcn@latest init
+3. npm i react-icons
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 02. create-website-layout
 
-## Deploy on Vercel
+4. npm i mongoose
+5. npm i zod
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 02. login
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+npm i next-auth@beta bcryptjs react-hook-form @hookform/resolvers mongodb @auth/mongodb-adapter
+npm i --save-dev @types/bcryptjs
+npx auth secret
+```
