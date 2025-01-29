@@ -163,4 +163,15 @@ body {
   .likes {
     @apply bg-red-500 rounded-sm text-xs text-white px-1 flex items-center justify-center;
   }
+
+  .post__list {
+    @apply font-nanum text-gray-500 text-sm;
+  }
+  .post__list td,
+  .post__list th {
+    @apply text-center;
+  }
+  .post__list td:first-child {
+    @apply text-left;
+  }
 }

@@ -9,7 +9,7 @@ export default async function AdminLayout({
   return (
     <div>
       <Header />
-      <main className='main__container'>{children}</main>
+      <main className='admin__container'>{children}</main>
       <Footer />
     </div>
   );
