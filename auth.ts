@@ -39,10 +39,18 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       },
       async authorize(credentials) {
         await connectToDatabase();
+
         if (credentials == null) return null;
 
         // 입력된 이메일과 일치하는 사용자 찾기
-        const user = await User.findOne({ email: credentials.email });
+        // const user = await User.findOne({ email: credentials.email });
+
+        // ✅ 로그인할 때마다 visitCount 1 증가
+        const user = await User.findOneAndUpdate(
+          { email: credentials.email },
+          { $inc: { visitCount: 1 } }, // 🔹 visitCount 값 증가
+          { new: true, projection: 'name email role visitCount password' } // 🔹 최신 값 반환
+        );
 
         // 사용자가 존재하고 비밀번호가 저장되어 있는 경우
         if (user && user.password) {
@@ -79,11 +87,13 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         // JWT 토큰에 사용자 정보 저장
         token.name = user.name || user.email!.split('@')[0];
         token.role = (user as { role: string }).role;
+        token.visitCount = (user as { visitCount: number }).visitCount ?? 0;
       }
 
       // 세션이 업데이트되었을 때 토큰의 name 정보 갱신
       if (session?.user?.name && trigger === 'update') {
         token.name = session.user.name;
+        token.visitCount = session.user.visitCount;
       }
       return token;
     },

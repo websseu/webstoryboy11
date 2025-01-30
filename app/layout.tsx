@@ -1,11 +1,12 @@
-import type { Metadata } from 'next'
-import './globals.css'
+import type { Metadata } from 'next';
+import './globals.css';
 import {
   APP_DESCRIPTION,
   APP_NAME,
   APP_SLOGAN,
   APP_KEYWORDS,
-} from '@/lib/constants'
+} from '@/lib/constants';
+import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
   title: {
@@ -14,16 +15,19 @@ export const metadata: Metadata = {
   },
   description: APP_DESCRIPTION,
   keywords: APP_KEYWORDS,
-}
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
     <html lang='ko'>
-      <body>{children}</body>
+      <body>
+        <Toaster />
+        {children}
+      </body>
     </html>
-  )
+  );
 }

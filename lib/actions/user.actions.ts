@@ -1,10 +1,13 @@
 'use server';
 
 import { signIn, signOut } from '@/auth';
-import { IUserSignIn } from '@/lib/types';
+import { IUserSignIn, IUserSignUp } from '@/lib/types';
 import { redirect } from 'next/navigation';
 import { connectToDatabase } from '../db';
 import User from '../db/models/user.model';
+import { UserSignUpSchema } from '../validator';
+import { formatError } from '../utils';
+import bcrypt from 'bcryptjs';
 
 // 로그인(이메일/비밀번호)
 export async function signInWithCredentials(user: IUserSignIn) {
@@ -21,6 +24,7 @@ export const SignOut = async () => {
 //   redirect(result.url);
 // }
 
+// 모든 회원 정보 가져오기
 export const getAllUsers = async () => {
   try {
     await connectToDatabase();
@@ -31,3 +35,24 @@ export const getAllUsers = async () => {
     throw new Error('게시물을 불러오지 못했습니다.');
   }
 };
+
+// CREATE
+export async function registerUser(userSignUp: IUserSignUp) {
+  try {
+    const user = await UserSignUpSchema.parseAsync({
+      name: userSignUp.name,
+      email: userSignUp.email,
+      password: userSignUp.password,
+      confirmPassword: userSignUp.confirmPassword,
+    });
+
+    await connectToDatabase();
+    await User.create({
+      ...user,
+      password: await bcrypt.hash(user.password, 5),
+    });
+    return { success: true, message: '회원가입이 성공적으로 이루어졌습니다.' };
+  } catch (error) {
+    return { success: false, error: formatError(error) };
+  }
+}

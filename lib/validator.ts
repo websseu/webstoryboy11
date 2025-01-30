@@ -29,20 +29,34 @@ export const PostInputSchema = z.object({
     .default(0),
 });
 
+// 공통요소
+const UserName = z
+  .string()
+  .min(2, { message: '사용자 이름은 최소 2자 이상이어야 합니다.' })
+  .max(15, { message: '사용자 이름은 최대 15자까지 가능합니다.' });
+const Password = z
+  .string()
+  .min(5, { message: '비밀번호는 최소 5자 이상이어야 합니다.' })
+  .max(30, { message: '비밀번호는 최대 30자까지 가능합니다.' });
+// .regex(/[A-Za-z]/, {
+//   message: '비밀번호에는 최소 하나의 영문자가 포함되어야 합니다.',
+// })
+// .regex(/[0-9]/, {
+//   message: '비밀번호에는 최소 하나의 숫자가 포함되어야 합니다.',
+// })
+// .regex(/[!@#$%^&*]/, {
+//   message: '비밀번호에는 최소 하나의 특수문자(!@#$%^&*)가 포함되어야 합니다.',
+// });
+const Email = z
+  .string()
+  .min(1, '이메일은 필수 입력 사항입니다.')
+  .email('올바른 이메일 형식이 아닙니다.');
+
 // 회원가입
 export const UserInputSchema = z.object({
-  name: z
-    .string()
-    .min(2, { message: '사용자 이름은 최소 2자 이상이어야 합니다.' })
-    .max(15, { message: '사용자 이름은 최대 15자까지 가능합니다.' }),
-  password: z
-    .string()
-    .min(5, '비밀번호는 최소 5자 이상이어야 합니다.')
-    .max(50, { message: '비밀번호는 최대 20자까지 가능합니다.' }),
-  email: z
-    .string()
-    .min(1, '이메일은 필수 입력 사항입니다.')
-    .email('올바른 이메일 형식이 아닙니다.'),
+  name: UserName,
+  password: Password,
+  email: Email,
   emailVerified: z.boolean(),
   image: z.string().optional(),
   phone: z.string().optional(),
@@ -52,12 +66,15 @@ export const UserInputSchema = z.object({
 
 // 로그인
 export const UserSignInSchema = z.object({
-  email: z
-    .string()
-    .min(1, '이메일은 필수 입력 사항입니다.')
-    .email('올바른 이메일 형식이 아닙니다.'),
-  password: z
-    .string()
-    .min(5, '비밀번호는 최소 5자 이상이어야 합니다.')
-    .max(50, { message: '비밀번호는 최대 20자까지 가능합니다.' }),
+  email: Email,
+  password: Password,
+});
+
+// 회원가입
+export const UserSignUpSchema = UserSignInSchema.extend({
+  name: UserName,
+  confirmPassword: Password,
+}).refine((data) => data.password === data.confirmPassword, {
+  message: '패스워드가 일치하지 않습니다.',
+  path: ['confirmPassword'],
 });

@@ -3,6 +3,7 @@ import {
   PostInputSchema,
   UserInputSchema,
   UserSignInSchema,
+  UserSignUpSchema,
 } from './validator';
 
 export interface Post {
@@ -48,3 +49,4 @@ export type IPostInput = z.infer<typeof PostInputSchema>;
 
 export type IUserInput = z.infer<typeof UserInputSchema>;
 export type IUserSignIn = z.infer<typeof UserSignInSchema>;
+export type IUserSignUp = z.infer<typeof UserSignUpSchema>;
