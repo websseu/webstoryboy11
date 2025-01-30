@@ -28,13 +28,19 @@ export type MenuItem = {
   name: string;
   href: string;
 };
+
+export type SubjectItem = {
+  title: string;
+  href: string;
+};
+
 export type TitleItem = {
   category: string;
   title: string;
   text: string;
   desc: string;
   href: string;
-  subject: string[];
+  subjects: SubjectItem[];
 };
 
 export type Data = {

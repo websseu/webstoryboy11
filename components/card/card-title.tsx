@@ -1,11 +1,18 @@
+'use client';
+
 import Link from 'next/link';
 import { TitleItem } from '@/lib/types';
+import { usePathname } from 'next/navigation';
 
 interface CardTitleProps {
   pagesTitle: TitleItem;
 }
 
 export default function CardTitle({ pagesTitle }: CardTitleProps) {
+  const pathname = usePathname();
+
+  const basePath = `/${pagesTitle.category}`;
+
   return (
     <>
       <h2 className='text-2xl md:text-3xl font-nexon mb-3'>
@@ -15,18 +22,24 @@ export default function CardTitle({ pagesTitle }: CardTitleProps) {
         {pagesTitle.desc}
       </p>
       <div className='flex gap-1'>
-        <Link href='/tutorial' className='subject'>
+        <Link
+          href={basePath}
+          className={`subject ${pathname === basePath ? 'red' : ''}`}
+        >
           All
         </Link>
-        {pagesTitle.subject.map((subject) => (
-          <Link
-            key={subject}
-            href={`/tutorial/${encodeURIComponent(subject)}`}
-            className='subject'
-          >
-            {subject}
-          </Link>
-        ))}
+        {pagesTitle.subjects.map((subject) => {
+          const isActive = pathname === `${basePath}/${subject.href}`;
+          return (
+            <Link
+              key={subject.href}
+              href={`${basePath}/${subject.href}`}
+              className={`subject ${isActive ? 'red' : ''}`}
+            >
+              {subject.title}
+            </Link>
+          );
+        })}
       </div>
     </>
   );

@@ -45,7 +45,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         // 입력된 이메일과 일치하는 사용자 찾기
         // const user = await User.findOne({ email: credentials.email });
 
-        // ✅ 로그인할 때마다 visitCount 1 증가
+        // 로그인할 때마다 visitCount 1 증가
         const user = await User.findOneAndUpdate(
           { email: credentials.email },
           { $inc: { visitCount: 1 } }, // 🔹 visitCount 값 증가
@@ -93,7 +93,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       // 세션이 업데이트되었을 때 토큰의 name 정보 갱신
       if (session?.user?.name && trigger === 'update') {
         token.name = session.user.name;
-        token.visitCount = session.user.visitCount;
       }
       return token;
     },

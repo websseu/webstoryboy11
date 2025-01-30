@@ -151,10 +151,10 @@ body {
   }
 
   .subject {
-    @apply border-black400 font-nanum border text-black300 rounded-sm text-[12px] px-2 cursor-pointer hover:border-black200;
+    @apply border-black400 font-nanum border text-black300 rounded-sm text-[12px] px-2 cursor-pointer;
   }
 
-  .noData {
+  .no-data {
     @apply min-h-72 font-nanum flex items-center justify-center text-center text-gray-600;
   }
   .tagGray {
@@ -173,5 +173,11 @@ body {
   }
   .post__list td:first-child {
     @apply text-left;
+  }
+  .tags {
+    @apply bg-slate-400 rounded-sm text-xs px-2 text-white capitalize font-nanum;
+  }
+  .red {
+    @apply bg-red-500 border-red-500 text-white;
   }
 }

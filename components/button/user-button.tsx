@@ -17,8 +17,6 @@ import Link from 'next/link';
 export default async function UserButton() {
   const session = await auth();
 
-  console.log(session);
-
   return (
     <div className='flex gap-2 items-center'>
       <DropdownMenu>
