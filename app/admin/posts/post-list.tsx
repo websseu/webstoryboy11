@@ -10,11 +10,13 @@ import {
 
 export default async function PostList() {
   const appPosts = await getAllPosts();
+  const totalPosts = appPosts.length;
 
   return (
     <div className='post__list'>
-      <div>
+      <div className='flex items-center'>
         <h2>게시물 목록</h2>
+        <span className='text-xs'>({totalPosts})</span>
       </div>
       <Table>
         <TableHeader>

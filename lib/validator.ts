@@ -28,3 +28,36 @@ export const PostInputSchema = z.object({
     .nonnegative('좋아요 수는 0 이상의 정수여야 합니다.')
     .default(0),
 });
+
+// 회원가입
+export const UserInputSchema = z.object({
+  name: z
+    .string()
+    .min(2, { message: '사용자 이름은 최소 2자 이상이어야 합니다.' })
+    .max(15, { message: '사용자 이름은 최대 15자까지 가능합니다.' }),
+  password: z
+    .string()
+    .min(5, '비밀번호는 최소 5자 이상이어야 합니다.')
+    .max(50, { message: '비밀번호는 최대 20자까지 가능합니다.' }),
+  email: z
+    .string()
+    .min(1, '이메일은 필수 입력 사항입니다.')
+    .email('올바른 이메일 형식이 아닙니다.'),
+  emailVerified: z.boolean(),
+  image: z.string().optional(),
+  phone: z.string().optional(),
+  role: z.string().min(1, '역할은 필수 입력 사항입니다.'),
+  visitCount: z.number().int().default(0),
+});
+
+// 로그인
+export const UserSignInSchema = z.object({
+  email: z
+    .string()
+    .min(1, '이메일은 필수 입력 사항입니다.')
+    .email('올바른 이메일 형식이 아닙니다.'),
+  password: z
+    .string()
+    .min(5, '비밀번호는 최소 5자 이상이어야 합니다.')
+    .max(50, { message: '비밀번호는 최대 20자까지 가능합니다.' }),
+});

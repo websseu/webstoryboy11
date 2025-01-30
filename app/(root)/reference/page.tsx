@@ -1,5 +1,20 @@
-import React from 'react'
+import { notFound } from 'next/navigation';
+import { TitleItem } from '@/lib/types';
+import CardTitle from '@/components/card/card-title';
+import data from '@/lib/data';
 
-export default function ReferencePage() {
-  return <div>ReferencePage</div>
+export default async function ReferencePage() {
+  const pagesTitle: TitleItem | undefined = data.pagesTitle.find(
+    (page) => page.category === 'reference'
+  );
+
+  if (!pagesTitle) {
+    notFound();
+  }
+
+  return (
+    <section>
+      <CardTitle pagesTitle={pagesTitle} />
+    </section>
+  );
 }

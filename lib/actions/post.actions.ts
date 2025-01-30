@@ -15,6 +15,7 @@ export const getAllPosts = async () => {
   try {
     await connectToDatabase();
     const posts = await Post.find({}).sort({ createdAt: -1 });
+
     return posts;
   } catch (error) {
     console.error('게시물 가져오기 오류:', error);
@@ -38,6 +39,7 @@ export const getPostsForCategory = async ({
     })
       .sort({ createdAt: -1 })
       .limit(limit);
+    console.log('가져온 게시물:', posts);
     return posts;
   } catch (error) {
     console.error('게시물 가져오기 오류:', error);

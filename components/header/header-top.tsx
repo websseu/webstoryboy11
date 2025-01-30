@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { GiMoebiusStar } from 'react-icons/gi';
 import { MdStars } from 'react-icons/md';
+import UserButton from '../button/user-button';
 
 export default function HeaderTop() {
   return (
@@ -29,7 +30,7 @@ export default function HeaderTop() {
       {/* 오른쪽 유저 버튼 */}
       <div className='w-[200px]'>
         <div className='px-4 py-1 bg-background rounded-full items-center justify-center ring ring-gray-300/20 hover:ring-gray-300/60 bg-mainBg flex cursor-pointer'>
-          btn
+          <UserButton />
         </div>
       </div>
     </div>

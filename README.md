@@ -51,7 +51,8 @@ npx shadcn@latest add input
 npx shadcn@latest add carousel
 npm i embla-carousel-autoplay
 npx shadcn@latest add table
-
+npx shadcn@latest add form
+npx shadcn@latest add dropdown-menu
 ```
 
 ## 01. create-next-app

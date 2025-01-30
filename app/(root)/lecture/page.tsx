@@ -1,5 +1,20 @@
-import React from 'react'
+import { notFound } from 'next/navigation';
+import { TitleItem } from '@/lib/types';
+import CardTitle from '@/components/card/card-title';
+import data from '@/lib/data';
 
-export default function LecturePage() {
-  return <div>LecturePage</div>
+export default async function LecturePage() {
+  const pagesTitle: TitleItem | undefined = data.pagesTitle.find(
+    (page) => page.category === 'lecture'
+  );
+
+  if (!pagesTitle) {
+    notFound();
+  }
+
+  return (
+    <section>
+      <CardTitle pagesTitle={pagesTitle} />
+    </section>
+  );
 }
